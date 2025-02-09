@@ -43,7 +43,7 @@ export default function UserDelete({ user }: UserSoftDeleteProps) {
 
     return (
         <button onClick={handleUserSoftDelete}>
-            {isMutating ? 'Deleting user...' : 'Delete user'}
+            {isMutating ? 'Deleting...' : 'Delete'}
         </button>
     )
 

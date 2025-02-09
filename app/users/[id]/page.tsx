@@ -8,9 +8,6 @@ export default async function Page(props: { params: ParamsType }) {
 
     return (
         <>
-            <h1 className="text-2xl">
-                User details
-            </h1>
             <UserDetails userId={id} />
         </>
     );

@@ -29,11 +29,15 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <header className="flex gap-6">
-          <Link href="/" className="border rounded border-black p-2">homepage</Link>
-          <Link href="/users" className="border rounded border-black p-2">users list</Link>
-          <Link href="/users/create" className="border rounded border-black p-2">create user</Link>
+          <div className="px-3 mb-2">
+            <Link href="/" className="border rounded border-black p-2">homepage</Link>
+            <Link href="/users" className="border rounded border-black p-2">users list</Link>
+            <Link href="/users/create" className="border rounded border-black p-2">create user</Link>
+          </div>
         </header>
-        {children}
+        <div className="container px-3">
+          {children}
+        </div>
       </body>
     </html>
   );
