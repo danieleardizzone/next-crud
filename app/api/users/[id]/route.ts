@@ -41,3 +41,22 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
         return NextResponse.json({ message: error.message }, { status: 500 });
     }
 }
+
+// rotta per la soft delete
+export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+    try {
+        const userId = parseInt((await params).id);
+
+        const body = await request.json();
+
+        const deletedUser = await prisma.user.update({
+            where: { id: userId },
+            data: body,
+        });
+
+        return NextResponse.json({ success: true, user: deletedUser }, { status: 200 });
+
+    } catch (error: any) {
+        return NextResponse.json({ message: error.message }, { status: 500 });
+    }
+}

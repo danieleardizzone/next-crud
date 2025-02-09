@@ -1,12 +1,7 @@
 'use client';
 import useUser from "@/app/hooks/useUser";
-
-interface User {
-    id: number;
-    name: string;
-    email: string;
-    deleted: boolean;
-}
+import Link from "next/link";
+import UserSoftDelete from "./UserSoftDelete";
 
 interface UserDetailsProps {
     userId: string;
@@ -35,9 +30,10 @@ export default function UserDetails({ userId }: UserDetailsProps) {
             <p>
                 <span className="font-bold">Email</span>: {user?.email}
             </p>
-            <p>
-                <span className="font-bold text-red-500">{user?.deleted ? 'Deleted user' : ''}</span>
-            </p>
+            <div>
+                <span className="font-bold text-red-500">{user?.deleted ? 'Deleted user' : <UserSoftDelete user={user} />}</span>
+            </div>
+            <Link href={`/users/${user?.id}/update`} className="border rounded border-black p-2">update user</Link>
         </>
     )
 
