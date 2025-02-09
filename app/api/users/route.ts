@@ -49,7 +49,9 @@ export async function POST(request: NextRequest) {
 export async function GET() {
     try {
 
-        const users = await prisma.user.findMany();
+        const users = await prisma.user.findMany({
+            where: { deleted: false },
+        });
 
         return NextResponse.json(users, { status: 200 });
 
