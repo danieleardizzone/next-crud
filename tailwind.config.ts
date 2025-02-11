@@ -6,12 +6,18 @@ export default {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
+        pageBg: 'var(--color-background)',
+        headerBg: 'var(--color-background-2)',
+        cardBg: 'var(--color-background-2)',
+        btnBg: 'var(--color-secondary)',
+        text: 'var(--color-primary)',
+        cardBorder: 'var(--color-primary)',
+        btnBorder: 'var(--color-primary)',
+      }
     },
   },
   plugins: [],
