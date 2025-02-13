@@ -1,16 +1,25 @@
 'use client';
 
-import useTheme, { Theme } from '@/app/hooks/useTheme';
+// import useTheme, { Theme } from '@/app/hooks/useTheme';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 export default function ThemeToggle() {
-    const { theme, changeTheme } = useTheme()
+    const [mounted, setMounted] = useState(false);
+    const { setTheme, resolvedTheme } = useTheme();
+
+    useEffect(() => setMounted(true), []);
+
 
     return (
         <div>
-            <button
-                onClick={() => changeTheme(theme === 'light' ? 'dark' : 'light')}>
-                Switch to {theme === 'light' ? 'dark' : 'light'} theme
-            </button>
+            {mounted &&
+                <button
+                    onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}>
+                    Switch to {resolvedTheme === 'light' ? 'dark' : 'light'} theme
+                </button>
+            }
         </div>
+
     );
 }

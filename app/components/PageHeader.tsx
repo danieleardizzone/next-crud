@@ -8,9 +8,9 @@ const users = ['/users', '/users/create']
 export default function PageHeader() {
 
     return (
-        <header className="px-3 mb-2">
-            <div className="flex justify-between">
-                <div className="sm:text-2xl text-xl">
+        <header className="bg-card">
+            <div className="flex justify-between items-center p-5 mb-2">
+                <div className="sm:text-3xl text-2xl font-bold">
                     MyBlog
                 </div>
                 {/* <div>
