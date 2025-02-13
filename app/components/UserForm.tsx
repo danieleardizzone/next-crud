@@ -1,6 +1,5 @@
 'use client';
 import { useRouter } from "next/navigation";
-import { NextResponse } from "next/server";
 import { useEffect } from "react";
 import { UseFormReturn } from "react-hook-form";
 import useSWRMutation, { SWRMutationResponse } from "swr/mutation";
@@ -51,11 +50,7 @@ export default function UserForm({ children, reactHookFormMethods, apiUrl, fetch
             // il trigger invia i dati al server e restituisce l'utente creato (userData)
             const userData = await trigger(formData);
 
-            console.log(userData);
-
             router.refresh();
-
-            console.log(userData);
 
             if (userData.success && userData.user.id) {
                 router.push(`/users/${userData.user.id}`);

@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import useSWRMutation from "swr/mutation";
 
 interface User {
@@ -31,10 +32,18 @@ export default function UserDelete({ user }: UserSoftDeleteProps) {
 
     const { trigger, error: mutationError, isMutating } = useSWRMutation(`/api/users/${user?.id}`, deleteUser);
 
+    const router = useRouter();
+
     async function handleUserSoftDelete() {
 
         try {
             const result = await trigger({ deleted: true });
+
+            router.refresh();
+
+            if (result.success) {
+                router.push('/users');
+            }
         } catch (err: any) {
             console.error('Error deleting user:', err.message);
         }
