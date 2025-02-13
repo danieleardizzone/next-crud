@@ -2,17 +2,22 @@
 
 import Link from "next/link";
 
-export default function DropDown() {
+export default function Dropdown() {
 
-    function toggleDropdown() {
-        const dropDownMenu = document.querySelector('#dropDownMenu');
-        dropDownMenu?.classList.toggle('hidden');
+    const dropdownMenu = document.querySelector('#dropdownMenu');
+
+    function dropdownBtn() {
+        dropdownMenu?.classList.toggle('hidden');
     }
+
+    // function closeDropdown() {
+
+    // }
 
     return (
         <>
             <button
-                onClick={toggleDropdown}
+                onClick={dropdownBtn}
                 className="relative py-1 px-5 w-22 sm:w-28 text-md sm:text-lg font-bold rounded-2xl border-2 border-btn bg-btn"
             >
                 <div className="flex items-center gap-2">
@@ -24,13 +29,21 @@ export default function DropDown() {
 
                 </div>
             </button>
-            <div className="w-44 absolute top-[76px] hidden" id="dropDownMenu">
+            <div className="w-44 absolute top-[76px] hidden" id="dropdownMenu">
                 <div className="sm:text-lg rounded-xl shadow-lg bg-card border border-card divide-y divide-card">
-                    <div className="py-2 px-3">
-                        <Link href="/users">List</Link>
+                    <div>
+                        <Link href="/users" onClick={dropdownBtn}>
+                            <div className="py-2 px-3">
+                                List
+                            </div>
+                        </Link>
                     </div>
-                    <div className="py-2 px-3">
-                        <Link href="/users/create">Create</Link>
+                    <div>
+                        <Link href="/users/create" onClick={dropdownBtn}>
+                            <div className="py-2 px-3">
+                                Create
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </div>
