@@ -1,22 +1,32 @@
 'use client';
 
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 export default function Dropdown() {
 
-    const dropdownMenu = document.querySelector('#dropdownMenu');
+    const dropdownMenuRef = useRef<HTMLDivElement>(null);
+    const dropdownBtnRef = useRef<HTMLButtonElement>(null);
 
     function dropdownBtn() {
-        dropdownMenu?.classList.toggle('hidden');
+        dropdownMenuRef.current?.classList.toggle('hidden');
     }
 
-    // function closeDropdown() {
-
-    // }
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (
+                !dropdownMenuRef.current?.contains(event.target as Node) && !dropdownBtnRef.current?.contains(event.target as Node)
+            ) {
+                dropdownMenuRef.current?.classList.add('hidden');
+            }
+        }
+        document.addEventListener('click', handleClickOutside);
+    }, []);
 
     return (
         <>
             <button
+                ref={dropdownBtnRef}
                 onClick={dropdownBtn}
                 className="relative py-1 px-5 w-22 sm:w-28 text-md sm:text-lg font-bold rounded-2xl border-2 border-btn bg-btn"
             >
@@ -29,7 +39,7 @@ export default function Dropdown() {
 
                 </div>
             </button>
-            <div className="w-44 absolute top-[76px] hidden" id="dropdownMenu">
+            <div className="w-44 absolute top-[76px] hidden" id="dropdownMenu" ref={dropdownMenuRef}>
                 <div className="sm:text-lg rounded-xl shadow-lg bg-card border border-card divide-y divide-card">
                     <div>
                         <Link href="/users" onClick={dropdownBtn}>
